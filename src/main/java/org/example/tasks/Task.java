@@ -1,5 +1,7 @@
 package org.example.tasks;
 
+import java.util.Objects;
+
 public class Task {
     private final int id;
     private String title;
@@ -37,5 +39,15 @@ public class Task {
         return String.format("[%s] %d: %s", done ? "x" : " ", id, title);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id;
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
