@@ -1,6 +1,7 @@
 package org.example.tasks;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class TaskManager {
@@ -16,6 +17,12 @@ public class TaskManager {
 
     public List<Task> getAll() {
         return List.copyOf(tasks);
+    }
+
+    public List<Task> getAllSortedByTitle() {
+        List<Task> sorted = new ArrayList<>(tasks);
+        sorted.sort(Comparator.comparing(Task::getTitle));
+        return sorted;
     }
 
     public Task findById(int id) {
@@ -45,8 +52,8 @@ public class TaskManager {
 //        return true;
 
        return tasks.removeIf(task -> task.getId() == id);
-
     }
+
 
 
 }

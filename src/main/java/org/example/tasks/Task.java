@@ -2,7 +2,7 @@ package org.example.tasks;
 
 import java.util.Objects;
 
-public class Task {
+public class Task implements Comparable<Task> {
     private final int id;
     private String title;
     private boolean done;
@@ -28,12 +28,6 @@ public class Task {
         this.done = true;
     }
 
-//    @Override
-//    public String toString() {
-//        String result = (done ? "[x] 1: Invata Java" : "[ ] 1: Invata Java");
-//        return result;
-//    }
-
     @Override
     public String toString() {
         return String.format("[%s] %d: %s", done ? "x" : " ", id, title);
@@ -49,5 +43,10 @@ public class Task {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    @Override
+    public int compareTo(Task other) {
+        return Integer.compare(this.id, other.id);
     }
 }

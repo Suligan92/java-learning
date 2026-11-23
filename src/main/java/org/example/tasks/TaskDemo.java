@@ -1,6 +1,7 @@
 package org.example.tasks;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class TaskDemo {
@@ -27,7 +28,7 @@ public class TaskDemo {
 
 
 
-        TaskManager manager = new TaskManager();
+//        TaskManager manager = new TaskManager();
 //        manager.add("Învață Java");
 //        manager.add("Fă commit pe GitHub");
 //        manager.add("Citește despre colecții");
@@ -41,11 +42,16 @@ public class TaskDemo {
 //        System.out.println(manager.markDone(99));   // sarcină inexistentă
 
 
-        manager.add("Învață Java");
-        System.out.println(manager.remove(1));    // true
-        System.out.println(manager.remove(1));    // false (a fost deja ștearsă)
-        System.out.println(manager.getAll());     // []
+//        manager.add("Învață Java");
+//        System.out.println(manager.remove(1));    // true
+//        System.out.println(manager.remove(1));    // false (a fost deja ștearsă)
+//        System.out.println(manager.getAll());     // []
 
+
+//        TaskManager manager = new TaskManager();
+//        manager.add("Tema");
+//        manager.add("Banca");
+//        manager.getAll().sort(Comparator.comparing(Task::getTitle));
 
 
 

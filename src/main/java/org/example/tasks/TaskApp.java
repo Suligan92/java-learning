@@ -12,6 +12,7 @@ public class TaskApp {
             System.out.println("2. Listeaza sarcinile");
             System.out.println("3. Marcheaza ca terminata");
             System.out.println("4. Sterge sarcina");
+            System.out.println("5. Listeaza sortat dupa titlu");
             System.out.println("0. Iesire");
             System.out.println("Alege: ");
 
@@ -48,6 +49,11 @@ public class TaskApp {
                         } else {
                             System.out.println("Nu exista sarcina cu acest id");
                         }
+                    }
+                }
+                case "5" -> {
+                    for (Task t : manager.getAllSortedByTitle()) {
+                        System.out.println(t);
                     }
                 }
                 case "0" -> {
