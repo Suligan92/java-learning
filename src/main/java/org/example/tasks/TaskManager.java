@@ -25,6 +25,12 @@ public class TaskManager {
         return sorted;
     }
 
+    public List<Task> getAllUndoneFirst() {
+        List<Task> sorted = new ArrayList<>(tasks);
+        sorted.sort(Comparator.comparing(Task::isDone).thenComparing(Task::getTitle));
+        return sorted;
+    }
+
     public Task findById(int id) {
         for (Task task : tasks) {
             if (task.getId() == id) {

@@ -13,6 +13,7 @@ public class TaskApp {
             System.out.println("3. Marcheaza ca terminata");
             System.out.println("4. Sterge sarcina");
             System.out.println("5. Listeaza sortat dupa titlu");
+            System.out.println("6. Listeaza nefacutele primele");
             System.out.println("0. Iesire");
             System.out.println("Alege: ");
 
@@ -44,7 +45,7 @@ public class TaskApp {
                 case "4" -> {
                     Integer id = readId(scanner);
                     if (id != null) {
-                        if(manager.remove(id)) {
+                        if (manager.remove(id)) {
                             System.out.println("Sarcina eliminata.");
                         } else {
                             System.out.println("Nu exista sarcina cu acest id");
@@ -53,6 +54,11 @@ public class TaskApp {
                 }
                 case "5" -> {
                     for (Task t : manager.getAllSortedByTitle()) {
+                        System.out.println(t);
+                    }
+                }
+                case "6" -> {
+                    for (Task t : manager.getAllUndoneFirst()) {
                         System.out.println(t);
                     }
                 }
@@ -65,13 +71,14 @@ public class TaskApp {
         }
 
     }
-        public static Integer readId(Scanner scanner) {
-            System.out.println("Id: ");
-            try {
-                return Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Id invalid. Id-ul trebuie sa fie un numar!");
-                return null;
-            }
+
+    public static Integer readId(Scanner scanner) {
+        System.out.println("Id: ");
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Id invalid. Id-ul trebuie sa fie un numar!");
+            return null;
         }
+    }
 }
