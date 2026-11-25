@@ -14,6 +14,8 @@ public class TaskApp {
             System.out.println("4. Sterge sarcina");
             System.out.println("5. Listeaza sortat dupa titlu");
             System.out.println("6. Listeaza nefacutele primele");
+            System.out.println("7. Afiseaza o sarcina dupa id");
+            System.out.println("8. Sterge sarcinile terminate");
             System.out.println("0. Iesire");
             System.out.println("Alege: ");
 
@@ -62,6 +64,21 @@ public class TaskApp {
                         System.out.println(t);
                     }
                 }
+                case "7" -> {
+                    Integer id = readId(scanner);
+                    if (id != null) {
+                        try {
+                            System.out.println(manager.getById(id));
+                        } catch (TaskNotFoundException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                }
+                case "8" -> {
+                    int count = manager.removeDone();
+                    System.out.println("Au fost sterse " + count + " sarcini.");
+                }
+
                 case "0" -> {
                     System.out.println("La revedere!");
                     return;

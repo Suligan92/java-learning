@@ -40,6 +40,14 @@ public class TaskManager {
         return null;
     }
 
+    public Task getById(int id) {
+        Task task = findById(id);
+        if (task == null) {
+            throw new TaskNotFoundException(id);
+        }
+        return task;
+    }
+
     public boolean markDone(int id) {
         Task task = findById(id);
         if (task == null) {
@@ -50,14 +58,13 @@ public class TaskManager {
     }
 
     public boolean remove(int id) {
-//        Task task = findById(id);
-//        if (task == null) {
-//            return false;
-//        }
-//        tasks.remove(task);
-//        return true;
-
        return tasks.removeIf(task -> task.getId() == id);
+    }
+
+    public int removeDone() {
+        int before = tasks.size();
+        tasks.removeIf(Task::isDone);
+        return before - tasks.size();
     }
 
 
