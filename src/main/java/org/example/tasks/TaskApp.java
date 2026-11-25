@@ -1,5 +1,7 @@
 package org.example.tasks;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class TaskApp {
@@ -16,6 +18,8 @@ public class TaskApp {
             System.out.println("6. Listeaza nefacutele primele");
             System.out.println("7. Afiseaza o sarcina dupa id");
             System.out.println("8. Sterge sarcinile terminate");
+            System.out.println("9. Salveaza in fisier");
+            System.out.println("10. Incarca din fisier");
             System.out.println("0. Iesire");
             System.out.println("Alege: ");
 
@@ -78,7 +82,22 @@ public class TaskApp {
                     int count = manager.removeDone();
                     System.out.println("Au fost sterse " + count + " sarcini.");
                 }
-
+                case "9" -> {
+                    try {
+                        manager.saveToFile(Path.of("tasks.txt"));
+                        System.out.println("Salvat in tasks.txt");
+                    } catch (IOException e) {
+                        System.out.println("Eroare la salvare: " + e.getMessage());
+                    }
+                }
+                case "10" -> {
+                    try {
+                        manager.loadFromFile(Path.of("tasks.txt"));
+                        System.out.println("Incarcat din tasks.txt");
+                    } catch (IOException e) {
+                        System.out.println("Eroare la incarcare: " + e.getMessage());
+                    }
+                }
                 case "0" -> {
                     System.out.println("La revedere!");
                     return;

@@ -1,0 +1,2 @@
+1;false;Tema
+2;true;Antrenament

@@ -1,5 +1,8 @@
 package org.example.tasks;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -65,6 +68,31 @@ public class TaskManager {
         int before = tasks.size();
         tasks.removeIf(Task::isDone);
         return before - tasks.size();
+    }
+
+    public void saveToFile(Path path) throws IOException {
+        List<String> lines = new ArrayList<>();
+        for (Task t : tasks) {
+            lines.add(t.getId() + ";" + t.isDone() + ";" + t.getTitle());
+        }
+        Files.write(path, lines);
+    }
+
+    public void loadFromFile(Path path) throws IOException {
+        tasks.clear();
+        for (String line : Files.readAllLines(path)) {
+            String[] parts = line.split(";");
+            int id = Integer.parseInt(parts[0]);
+            boolean done = Boolean.parseBoolean(parts[1]);
+            String title = parts[2];
+
+            Task task = new Task(id, title);
+            if (done) {
+                task.markDone();
+            }
+            tasks.add(task);
+            nextId = Math.max(nextId, id + 1);
+        }
     }
 
 
